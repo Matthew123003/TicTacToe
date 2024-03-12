@@ -4,48 +4,69 @@ package rocks.zipcodewilmington.tictactoe;
  * @author leon on 6/22/18.
  */
 public class Board {
-
-    private char[][] board;
     private Character[][] matrix;
     public Board(Character[][] matrix) {
         this.matrix = matrix;
     }
 
     public Boolean isInFavorOfX() {
-        return null;
+        int xCounter = 0;
+        boolean xWins = false;
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(matrix[i][j] == 'X'){
+                    xCounter++;
+                }
+                if(xCounter == 3){
+                    xWins = true;
+                }
+            }
+        }
+
+        return xWins;
     }
 
     public Boolean isInFavorOfO() {
-        return null;
+        int oCounter = 0;
+        boolean oWins = false;
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(matrix[i][j] == 'O'){
+                    oCounter++;
+                }
+                if(oCounter == 3){
+                    oWins = true;
+                }
+            }
+        }
+
+        return oWins;
     }
 
-    public Boolean checkWinner(){
-        int n = 3;
-        //Check rows
-        for(int i = 0; i < n; i++){
-            if(matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2] &&
-                matrix[i][2] == matrix[i][0] && matrix[i][0] == player){
-                return true;
-            }
-        }
-        //Check columns
-        for(int i = 0; i < n; i++){
-            if(matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i] &&
-                matrix[2][i] == matrix[0][i] && matrix[0][i] == player){
-                return true;
-            }
-        }
+
         //Check diagonals
 
-        return null;
-    }
-
     public Boolean isTie() {
-        return null;
+        boolean tie = false;
+
+        if(!isInFavorOfX() && !isInFavorOfO()){
+            tie = true;
+        }
+
+        return tie;
     }
 
     public String getWinner() {
-        return null;
+        String winner = "";
+
+        if (isInFavorOfX() && !isInFavorOfO()) {
+            winner = "X";
+        }if(isInFavorOfO() && !isInFavorOfX()){
+            winner = "O";
+        }
+        return winner;
     }
 
 }
