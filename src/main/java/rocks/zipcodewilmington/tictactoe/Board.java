@@ -13,17 +13,18 @@ public class Board {
         int xCounter = 0;
         boolean xWins = false;
 
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                if(matrix[i][j] == 'X'){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (matrix[i][j] == 'X') {
                     xCounter++;
                 }
-                if(xCounter == 3){
-                    xWins = true;
-                }
             }
-        }
+            if (xCounter == 3) {
+                xWins = true;
+                xCounter= 0;
+            }
 
+        }
         return xWins;
     }
 
@@ -31,17 +32,20 @@ public class Board {
         int oCounter = 0;
         boolean oWins = false;
 
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                if(matrix[i][j] == 'O'){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (matrix[i][j] == 'O') {
                     oCounter++;
                 }
-                if(oCounter == 3){
-                    oWins = true;
-                }
-            }
-        }
 
+            }
+            if (oCounter == 3) {
+                oWins = true;
+                oCounter = 0;
+            }
+
+
+        }
         return oWins;
     }
 
@@ -51,7 +55,7 @@ public class Board {
     public Boolean isTie() {
         boolean tie = false;
 
-        if(!isInFavorOfX() && !isInFavorOfO()){
+        if(isInFavorOfX() == isInFavorOfO()){
             tie = true;
         }
 
