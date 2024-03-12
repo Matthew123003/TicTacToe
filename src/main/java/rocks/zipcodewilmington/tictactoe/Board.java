@@ -10,52 +10,54 @@ public class Board {
     }
 
     public Boolean isInFavorOfX() {
-        int xCounter = 0;
-        boolean xWins = false;
+      return checkWinner('X');
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matrix[i][j] == 'X') {
-                    xCounter++;
-                }
-            }
-            if (xCounter == 3) {
-                xWins = true;
-                xCounter= 0;
-            }
-
-        }
-        return xWins;
     }
+
 
     public Boolean isInFavorOfO() {
-        int oCounter = 0;
-        boolean oWins = false;
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matrix[i][j] == 'O') {
-                    oCounter++;
-                }
+        return checkWinner('O');
+    }
 
+    public boolean checkWinner(char player){
+
+
+        //Check rows
+        for(int i = 0; i < 3; i++){
+            if(matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2]
+            && matrix[i][2] == matrix[i][0] && matrix[i][0] == player){
+                return true;
             }
-            if (oCounter == 3) {
-                oWins = true;
-                oCounter = 0;
-            }
-
-
         }
-        return oWins;
+        //Check columns
+        for(int i = 0; i < 3; i++){
+            if(matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i]
+            && matrix[2][i] == matrix[0][i] && matrix[0][i] == player){
+                return true;
+            }
+        }
+
+        //Check diagonal
+        if(matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2]
+        && matrix[2][2] == matrix[0][0] && matrix[0][0] == player){
+            return true;
+        }
+
+        //Check diagonal
+        if(matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0]
+        && matrix[2][0] == matrix[0][2] && matrix[0][2] == player){
+            return true;
+        }
+        return false;
     }
 
 
-        //Check diagonals
 
     public Boolean isTie() {
         boolean tie = false;
 
-        if(isInFavorOfX() == isInFavorOfO()){
+        if(!isInFavorOfO() && !isInFavorOfX()){
             tie = true;
         }
 
